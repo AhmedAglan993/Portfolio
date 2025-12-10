@@ -2,47 +2,83 @@ import React from 'react';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
 
-const ProjectCard: React.FC<{ project: Project }> = ({ project }) => (
-  <div className="group relative bg-neon-panel border border-gray-800 rounded-xl overflow-hidden hover:border-neon-blue/50 transition-all duration-300 hover:-translate-y-2">
-    {/* Image container */}
-    <div className="aspect-video w-full overflow-hidden relative">
-      <img 
-        src={project.imageUrl} 
-        alt={project.title} 
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-      <div className="absolute top-4 right-4">
-        <span className="px-3 py-1 bg-black/70 backdrop-blur text-xs font-mono border border-gray-600 rounded text-neon-blue uppercase">
-          {project.category}
-        </span>
-      </div>
-    </div>
+const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = React.useState(false);
 
-    {/* Content */}
-    <div className="p-6">
-      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">
-        {project.title}
-      </h3>
-      <p className="text-gray-400 text-sm mb-4 line-clamp-3">
-        {project.description}
-      </p>
+  const handleMouseEnter = () => {
+    if (project.videoUrl && videoRef.current) {
+      setIsPlaying(true);
+      videoRef.current.play().catch(e => console.log("Video play failed:", e));
+    }
+  };
 
-      {/* Tech Stack Tags */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        {project.techStack.map(tech => (
-          <span key={tech} className="text-[10px] uppercase tracking-wider px-2 py-1 bg-white/5 text-gray-300 rounded border border-white/5">
-            {tech}
+  const handleMouseLeave = () => {
+    if (project.videoUrl && videoRef.current) {
+      setIsPlaying(false);
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  return (
+    <div
+      className="group relative bg-neon-panel border border-gray-800 rounded-xl overflow-hidden hover:border-neon-blue/50 transition-all duration-300 hover:-translate-y-2"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Media container */}
+      <div className="aspect-video w-full overflow-hidden relative bg-black">
+        <img
+          src={project.imageUrl}
+          alt={project.title}
+          className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100 ${isPlaying ? 'opacity-0' : 'opacity-100'}`} // Hide image when video plays
+        />
+
+        {project.videoUrl && (
+          <video
+            ref={videoRef}
+            src={project.videoUrl}
+            muted
+            loop
+            playsInline
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
+          />
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90 pointer-events-none"></div>
+        <div className="absolute top-4 right-4 z-10">
+          <span className="px-3 py-1 bg-black/70 backdrop-blur text-xs font-mono border border-gray-600 rounded text-neon-blue uppercase">
+            {project.category}
           </span>
-        ))}
+        </div>
       </div>
 
-      <a href={project.link} className="inline-flex items-center text-sm font-mono text-neon-blue hover:text-white transition-colors">
-        View Case Study <i className="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-      </a>
+      {/* Content */}
+      <div className="p-6">
+        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+          {project.description}
+        </p>
+
+        {/* Tech Stack Tags */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.techStack.map(tech => (
+            <span key={tech} className="text-[10px] uppercase tracking-wider px-2 py-1 bg-white/5 text-gray-300 rounded border border-white/5">
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <a href={project.link} className="inline-flex items-center text-sm font-mono text-neon-blue hover:text-white transition-colors">
+          View Case Study <i className="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Projects: React.FC = () => {
   return (

@@ -3,20 +3,20 @@ import React from 'react';
 const Contact: React.FC = () => {
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
-        {/* Background Accent */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-neon-blue/5 to-transparent pointer-events-none"></div>
+      {/* Background Accent */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-neon-blue/5 to-transparent pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto glass-panel p-8 md:p-12 rounded-2xl border border-neon-blue/20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            
+
             {/* Contact Info */}
             <div>
               <h2 className="text-3xl font-bold text-white mb-6">Initialize Uplink</h2>
               <p className="text-gray-400 mb-8">
                 Ready to bring virtual concepts to reality? Whether you have a game idea, a VR training module, or need an AR consultant, my inbox is open.
               </p>
-              
+
               <div className="space-y-6">
                 <div className="flex items-center gap-4 group cursor-pointer">
                   <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-neon-blue group-hover:bg-neon-blue group-hover:text-black transition-all">
@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-xs text-gray-500 uppercase font-mono">Email</div>
-                    <div className="text-white font-medium">alex.void@example.com</div>
+                    <div className="text-white font-medium">ahmedaglan993@gmail.com</div>
                   </div>
                 </div>
 
@@ -34,17 +34,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-xs text-gray-500 uppercase font-mono">LinkedIn</div>
-                    <div className="text-white font-medium">linkedin.com/in/alexvoid</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 group cursor-pointer">
-                  <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-all">
-                    <i className="fa-brands fa-github"></i>
-                  </div>
-                  <div>
-                    <div className="text-xs text-gray-500 uppercase font-mono">GitHub</div>
-                    <div className="text-white font-medium">github.com/alexvoid</div>
+                    <div className="text-white font-medium">linkedin.com/in/ahmad-m-aglan</div>
                   </div>
                 </div>
               </div>

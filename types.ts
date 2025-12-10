@@ -4,6 +4,7 @@ export interface Project {
   category: 'VR' | 'AR' | 'Game Dev' | 'Tech Art';
   description: string;
   imageUrl: string;
+  videoUrl?: string;
   techStack: string[];
   link?: string;
 }

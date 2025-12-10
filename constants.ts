@@ -3,49 +3,63 @@ import { Project, Skill } from './types';
 export const PROJECTS: Project[] = [
   {
     id: '1',
-    title: 'Neon Horizon: Cyberpunk VR',
+    title: 'Car Training Simulation',
     category: 'VR',
-    description: 'A fully immersive open-world VR RPG built in Unreal Engine 5. Features physics-based combat and realistic climbing mechanics.',
-    imageUrl: 'https://picsum.photos/800/600?random=1',
-    techStack: ['Unreal Engine 5', 'C++', 'OpenXR', 'Blender'],
+    description: 'A high-fidelity driving simulation for Oculus VR, featuring advanced real-world physics and an AI-driven traffic system for realistic driver training.',
+    imageUrl: 'https://picsum.photos/800/600?random=10',
+    videoUrl: '/videos/car_training.mp4',
+    techStack: ['Unity', 'Oculus SDK', 'AI Traffic System', 'Physics Engine'],
     link: '#'
   },
   {
     id: '2',
-    title: 'Echoes of Mars AR',
-    category: 'AR',
-    description: 'Educational AR application for museums. Users point their phones at exhibits to see animated historical reconstructions.',
-    imageUrl: 'https://picsum.photos/800/600?random=2',
-    techStack: ['Unity', 'AR Foundation', 'C#', 'Shader Graph'],
+    title: 'Qat Workshop Experience',
+    category: 'VR',
+    description: 'A cultural VR experience created for Saudi National Day. Users engage in traditional Qat painting and pottery-making techniques in a virtual studio.',
+    imageUrl: 'https://picsum.photos/800/600?random=11',
+    videoUrl: '/videos/qat_workshop.mp4',
+    techStack: ['Unity', 'VR Interaction', '3D Modeling', 'Cultural Art'],
     link: '#'
   },
   {
     id: '3',
-    title: 'Voxel Tactics',
-    category: 'Game Dev',
-    description: 'A turn-based strategy game with destructible voxel environments. Custom pathfinding algorithms and procedural generation.',
-    imageUrl: 'https://picsum.photos/800/600?random=3',
-    techStack: ['Unity', 'C#', 'MagicaVoxel', 'Steamworks API'],
+    title: 'Virtual Bowling Event',
+    category: 'VR',
+    description: 'An engaging VR bowling game designed specifically for a pharmaceutical product launch. focused on intuitive mechanics for quick user onboarding.',
+    imageUrl: 'https://picsum.photos/800/600?random=12',
+    videoUrl: '/videos/bowling.mp4',
+    techStack: ['Unity', 'Oculus VR', 'Physics', 'Event System'],
     link: '#'
   },
   {
     id: '4',
-    title: 'Industrial Training Sim',
-    category: 'VR',
-    description: 'Enterprise VR solution for training heavy machinery operators. Focused on safety compliance and realistic control inputs.',
-    imageUrl: 'https://picsum.photos/800/600?random=4',
-    techStack: ['Unity', 'VR Interaction Toolkit', 'Oculus Quest 2'],
+    title: 'Limitless: Falling Tablets',
+    category: 'AR', // Categorizing Kinect/Motion as AR/Interactive
+    description: 'Motion-controlled Kinect game for Eva Pharma. Players use whole-body movement to collect falling items, driving engagement at the launch event.',
+    imageUrl: 'https://picsum.photos/800/600?random=13',
+    videoUrl: '/videos/falling_tablets.mp4',
+    techStack: ['Unity', 'Kinect SDK', 'Motion Capture', 'Interaction Design'],
+    link: '#'
+  },
+  {
+    id: '5',
+    title: 'Interactive Fruit Ninja',
+    category: 'Game Dev',
+    description: 'Customized touch-screen slicing game for a corporate event. Features branded elements and high-performance particle effects.',
+    imageUrl: 'https://picsum.photos/800/600?random=14',
+    videoUrl: '/videos/fruit_ninja.mp4',
+    techStack: ['Unity', 'Touch Interface', '2D Physics', 'Particle Systems'],
     link: '#'
   }
 ];
 
 export const SKILLS: Skill[] = [
-  { name: 'Unity (C#)', level: 95, icon: 'fa-brands fa-unity', color: 'text-white' },
-  { name: 'Unreal Engine (C++)', level: 85, icon: 'fa-gamepad', color: 'text-blue-400' },
-  { name: 'AR Development', level: 90, icon: 'fa-mobile-screen', color: 'text-green-400' },
-  { name: '3D Math & Physics', level: 80, icon: 'fa-calculator', color: 'text-yellow-400' },
-  { name: 'Shader Programming', level: 75, icon: 'fa-wand-magic-sparkles', color: 'text-purple-400' },
-  { name: 'React & WebGL', level: 70, icon: 'fa-brands fa-react', color: 'text-cyan-400' },
+  { name: 'Team Leadership', level: 100, icon: 'fa-solid fa-users-gear', color: 'text-neon-blue' },
+  { name: 'Project Management', level: 95, icon: 'fa-solid fa-list-check', color: 'text-neon-purple' },
+  { name: 'Unity (C#)', level: 90, icon: 'fa-brands fa-unity', color: 'text-white' },
+  { name: 'Unreal (Blueprints)', level: 90, icon: 'fa-gamepad', color: 'text-blue-400' },
+  { name: 'C# Programming', level: 90, icon: 'fa-code', color: 'text-green-400' },
+  { name: 'Full Cycle Dev', level: 100, icon: 'fa-solid fa-infinity', color: 'text-yellow-400' },
 ];
 
 export const NAV_LINKS = [
