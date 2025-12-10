@@ -1,6 +1,33 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.current) return;
+
+    setStatus('sending');
+
+    // REPLACE THESE WITH YOUR ACTUAL KEYS FROM EMAILJS DASHBOARD
+    // Sign up at https://www.emailjs.com/
+    const SERVICE_ID = 'service_m58f2w1';
+    const TEMPLATE_ID = 'template_omofbst';
+    const PUBLIC_KEY = '8rCZ_cSY2cdkfLzWx';
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+      .then((result) => {
+        console.log(result.text);
+        setStatus('success');
+        if (form.current) form.current.reset();
+      }, (error) => {
+        console.log(error.text);
+        setStatus('error');
+      });
+  };
+
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
       {/* Background Accent */}
@@ -41,21 +68,34 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Form */}
-            <form className="space-y-4">
+            <form ref={form} onSubmit={sendEmail} className="space-y-4">
               <div>
                 <label className="block text-xs font-mono text-gray-400 mb-1">IDENTIFIER (NAME)</label>
-                <input type="text" className="w-full bg-black/50 border border-gray-700 rounded p-3 text-white focus:border-neon-blue focus:outline-none transition-colors" placeholder="John Doe" />
+                <input type="text" name="user_name" className="w-full bg-black/50 border border-gray-700 rounded p-3 text-white focus:border-neon-blue focus:outline-none transition-colors" placeholder="John Doe" required />
               </div>
               <div>
                 <label className="block text-xs font-mono text-gray-400 mb-1">TRANSMISSION (EMAIL)</label>
-                <input type="email" className="w-full bg-black/50 border border-gray-700 rounded p-3 text-white focus:border-neon-blue focus:outline-none transition-colors" placeholder="john@company.com" />
+                <input type="email" name="user_email" className="w-full bg-black/50 border border-gray-700 rounded p-3 text-white focus:border-neon-blue focus:outline-none transition-colors" placeholder="john@company.com" required />
               </div>
               <div>
                 <label className="block text-xs font-mono text-gray-400 mb-1">DATA PACKET (MESSAGE)</label>
-                <textarea rows={4} className="w-full bg-black/50 border border-gray-700 rounded p-3 text-white focus:border-neon-blue focus:outline-none transition-colors" placeholder="Tell me about your project..."></textarea>
+                <textarea name="message" rows={4} className="w-full bg-black/50 border border-gray-700 rounded p-3 text-white focus:border-neon-blue focus:outline-none transition-colors" placeholder="Tell me about your project..." required></textarea>
               </div>
-              <button className="w-full py-3 bg-white/5 border border-neon-blue/50 text-neon-blue hover:bg-neon-blue hover:text-black font-bold uppercase tracking-wider rounded transition-all duration-300">
-                Send Message
+
+              <button
+                type="submit"
+                disabled={status === 'sending' || status === 'success'}
+                className={`w-full py-3 border font-bold uppercase tracking-wider rounded transition-all duration-300 ${status === 'success'
+                  ? 'bg-green-500/20 border-green-500 text-green-500'
+                  : status === 'error'
+                    ? 'bg-red-500/20 border-red-500 text-red-500'
+                    : 'bg-white/5 border-neon-blue/50 text-neon-blue hover:bg-neon-blue hover:text-black'
+                  }`}
+              >
+                {status === 'idle' && 'Send Message'}
+                {status === 'sending' && 'Transmitting...'}
+                {status === 'success' && 'Transmission Complete'}
+                {status === 'error' && 'Transmission Failed'}
               </button>
             </form>
 
