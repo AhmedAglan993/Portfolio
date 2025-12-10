@@ -20,13 +20,14 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="bg-black py-8 border-t border-gray-900">
         <div className="container mx-auto px-6 text-center">
-          © {new Date().getFullYear()} Ahmed Aglan. Built with React & Tailwind. Powered by Gemini API.
-        </p>
-    </div>
+          <p className="text-gray-600 text-sm font-mono">
+            © {new Date().getFullYear()} Ahmed Aglan. Built with React & Tailwind. Powered by Gemini API.
+          </p>
+        </div>
       </footer >
 
-  {/* The Digital Twin Assistant */ }
-  < AIChatBot />
+      {/* The Digital Twin Assistant */}
+      < AIChatBot />
     </div >
   );
 };
