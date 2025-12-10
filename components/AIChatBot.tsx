@@ -5,7 +5,7 @@ import { ChatMessage } from '../types';
 const AIChatBot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { id: 'init', role: 'model', text: "Systems Online. I am Nexus, Alex's digital assistant. Ask me about his projects, stack, or experience." }
+    { id: 'init', role: 'model', text: "Systems Online. I am Nexus, Ahmed's digital assistant. Ask me about his projects, stack, or experience." }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -43,7 +43,7 @@ const AIChatBot: React.FC = () => {
 
     try {
       const responseText = await sendMessageToGemini(userMsg.text, history);
-      
+
       const botMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'model',
@@ -86,11 +86,10 @@ const AIChatBot: React.FC = () => {
                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[85%] rounded-lg p-3 text-sm font-mono leading-relaxed ${
-                    msg.role === 'user'
+                  className={`max-w-[85%] rounded-lg p-3 text-sm font-mono leading-relaxed ${msg.role === 'user'
                       ? 'bg-neon-blue/20 text-white border border-neon-blue/30'
                       : 'bg-gray-800/80 text-gray-200 border border-gray-700'
-                  }`}
+                    }`}
                 >
                   {msg.text}
                 </div>
@@ -131,9 +130,8 @@ const AIChatBot: React.FC = () => {
       {/* Toggle Button */}
       <button
         onClick={toggleChat}
-        className={`${
-          isOpen ? 'bg-gray-800' : 'bg-neon-blue'
-        } text-white w-14 h-14 rounded-full shadow-lg hover:scale-110 transition-all duration-300 flex items-center justify-center group relative border-2 border-white/10`}
+        className={`${isOpen ? 'bg-gray-800' : 'bg-neon-blue'
+          } text-white w-14 h-14 rounded-full shadow-lg hover:scale-110 transition-all duration-300 flex items-center justify-center group relative border-2 border-white/10`}
       >
         <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping"></span>
         <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
