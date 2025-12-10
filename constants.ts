@@ -3,12 +3,32 @@ import { Project, Skill } from './types';
 export const PROJECTS: Project[] = [
   {
     id: '1',
-    title: 'Car Training Simulation',
+    title: 'VR Citadel: Mohamed Ali Mosque',
     category: 'VR',
-    description: 'A high-fidelity driving simulation for Oculus VR, featuring advanced real-world physics and an AI-driven traffic system for realistic driver training.',
-    imageUrl: 'https://picsum.photos/800/600?random=10',
-    videoUrl: '/videos/car_training.mp4',
-    techStack: ['Unity', 'Oculus SDK', 'AI Traffic System', 'Physics Engine'],
+    description: 'A photorealistic VR walkthrough of the historic Mohamed Ali Mosque in Unreal Engine. Features immersive voice-overs triggering at key hotspots to guide the user.',
+    imageUrl: 'https://picsum.photos/800/600?random=15',
+    videoUrl: '/videos/optimized/vr_citadel.mp4',
+    techStack: ['Unreal Engine', 'Photogrammetry', '3D Audio', 'VR Interaction'],
+    link: '#'
+  },
+  {
+    id: '6',
+    title: 'Jungle VR: Animal Care',
+    category: 'VR',
+    description: 'An educational VR game built in Unreal Engine. Players step into the role of a vet in the jungle, diagnosing and treating animals with interactive medical tools.',
+    imageUrl: 'https://picsum.photos/800/600?random=16',
+    videoUrl: '/videos/optimized/jungle_vr.mp4',
+    techStack: ['Unreal Engine', 'VR Physics', 'Blueprints', 'Education'],
+    link: '#'
+  },
+  {
+    id: '7',
+    title: 'Luxury Real Estate VR',
+    category: 'VR',
+    description: 'Interactive VR showcases for high-end properties. Prospective buyers can explore unbuilt architectural spaces with realistic lighting and material customization.',
+    imageUrl: 'https://picsum.photos/800/600?random=17',
+    videoUrl: '/videos/optimized/real_estate.mp4',
+    techStack: ['Unreal/Unity', 'ArchViz', 'Real-time Raytracing', 'Oculus Quest'],
     link: '#'
   },
   {
@@ -17,7 +37,7 @@ export const PROJECTS: Project[] = [
     category: 'VR',
     description: 'A cultural VR experience created for Saudi National Day. Users engage in traditional Qat painting and pottery-making techniques in a virtual studio.',
     imageUrl: 'https://picsum.photos/800/600?random=11',
-    videoUrl: '/videos/qat_workshop.mp4',
+    videoUrl: '/videos/optimized/qat_workshop.mp4',
     techStack: ['Unity', 'VR Interaction', '3D Modeling', 'Cultural Art'],
     link: '#'
   },
@@ -27,7 +47,7 @@ export const PROJECTS: Project[] = [
     category: 'VR',
     description: 'An engaging VR bowling game designed specifically for a pharmaceutical product launch. focused on intuitive mechanics for quick user onboarding.',
     imageUrl: 'https://picsum.photos/800/600?random=12',
-    videoUrl: '/videos/bowling.mp4',
+    videoUrl: '/videos/optimized/bowling.mp4',
     techStack: ['Unity', 'Oculus VR', 'Physics', 'Event System'],
     link: '#'
   },
@@ -37,7 +57,7 @@ export const PROJECTS: Project[] = [
     category: 'AR', // Categorizing Kinect/Motion as AR/Interactive
     description: 'Motion-controlled Kinect game for Eva Pharma. Players use whole-body movement to collect falling items, driving engagement at the launch event.',
     imageUrl: 'https://picsum.photos/800/600?random=13',
-    videoUrl: '/videos/falling_tablets.mp4',
+    videoUrl: '/videos/optimized/falling_tablets.mp4',
     techStack: ['Unity', 'Kinect SDK', 'Motion Capture', 'Interaction Design'],
     link: '#'
   },
@@ -47,7 +67,7 @@ export const PROJECTS: Project[] = [
     category: 'Game Dev',
     description: 'Customized touch-screen slicing game for a corporate event. Features branded elements and high-performance particle effects.',
     imageUrl: 'https://picsum.photos/800/600?random=14',
-    videoUrl: '/videos/fruit_ninja.mp4',
+    videoUrl: '/videos/optimized/fruit_ninja.mp4',
     techStack: ['Unity', 'Touch Interface', '2D Physics', 'Particle Systems'],
     link: '#'
   }
