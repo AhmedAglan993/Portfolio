@@ -39,6 +39,14 @@ const Hero: React.FC = () => {
           >
             CONTACT ME
           </a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3 border border-neon-purple/50 text-neon-purple hover:bg-neon-purple hover:text-white rounded transition-all duration-300 backdrop-blur-sm bg-black/30 flex items-center gap-2 group"
+          >
+            <i className="fa-solid fa-file-arrow-down group-hover:animate-bounce"></i> CV
+          </a>
         </div>
 
         {/* Floating Stats */}
