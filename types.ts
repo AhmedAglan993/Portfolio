@@ -2,6 +2,7 @@ export interface Project {
   id: string;
   title: string;
   category: 'VR' | 'AR' | 'Game Dev' | 'Tech Art';
+  company?: string;
   description: string;
   imageUrl: string;
   videoUrl?: string;
