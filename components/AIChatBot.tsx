@@ -11,6 +11,21 @@ const AIChatBot: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [avatarState, setAvatarState] = useState<'idle' | 'talking'>('idle');
+
+  // Lip Sync Animation Loop
+  useEffect(() => {
+    let interval: any;
+    if (isSpeaking) {
+      interval = setInterval(() => {
+        setAvatarState(prev => prev === 'idle' ? 'talking' : 'idle');
+      }, 150); // Swap every 150ms for talking effect
+    } else {
+      setAvatarState('idle');
+    }
+    return () => clearInterval(interval);
+  }, [isSpeaking]);
+
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null); // Using any because SpeechRecognition types are tricky in React 18
@@ -164,21 +179,14 @@ const AIChatBot: React.FC = () => {
             {/* Background Grid */}
             <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(0, 243, 255, .3) 25%, rgba(0, 243, 255, .3) 26%, transparent 27%, transparent 74%, rgba(0, 243, 255, .3) 75%, rgba(0, 243, 255, .3) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(0, 243, 255, .3) 25%, rgba(0, 243, 255, .3) 26%, transparent 27%, transparent 74%, rgba(0, 243, 255, .3) 75%, rgba(0, 243, 255, .3) 76%, transparent 77%, transparent)', backgroundSize: '30px 30px' }}></div>
 
-            {/* Avatar Image */}
+            {/* Avatar Image Swapper */}
             <div className="absolute inset-x-0 bottom-0 top-4 flex justify-center items-end">
               <div className="relative w-32 h-40">
-                <img src="/avatars/nexus.png" alt="Nexus Avatar" className="w-full h-full object-cover rounded-t-xl opacity-90 drop-shadow-[0_0_15px_rgba(0,243,255,0.5)]" />
-
-                {/* Digital Mouth Overlay */}
-                {isSpeaking && (
-                  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-10 h-6 flex items-center justify-center gap-1">
-                    <div className="w-1 bg-neon-blue/80 speaking-mouth rounded-full" style={{ animationDelay: '0s' }}></div>
-                    <div className="w-1 bg-neon-blue/80 speaking-mouth rounded-full" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-1 bg-neon-blue/80 speaking-mouth rounded-full" style={{ animationDelay: '0.2s' }}></div>
-                    <div className="w-1 bg-neon-blue/80 speaking-mouth rounded-full" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-1 bg-neon-blue/80 speaking-mouth rounded-full" style={{ animationDelay: '0s' }}></div>
-                  </div>
-                )}
+                <img
+                  src={avatarState === 'idle' ? "/avatars/nexus_idle.png" : "/avatars/nexus_talking.png"}
+                  alt="Nexus Avatar"
+                  className="w-full h-full object-cover rounded-t-xl opacity-90 drop-shadow-[0_0_15px_rgba(0,243,255,0.5)] transition-opacity duration-75"
+                />
 
                 {/* Scanline Effect */}
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent h-2 w-full animate-[scan_2s_linear_infinite] opacity-30 pointer-events-none"></div>
@@ -207,8 +215,8 @@ const AIChatBot: React.FC = () => {
               >
                 <div
                   className={`max-w-[85%] rounded-lg p-3 text-sm font-mono leading-relaxed ${msg.role === 'user'
-                      ? 'bg-neon-blue/20 text-white border border-neon-blue/30'
-                      : 'bg-gray-800/90 text-gray-200 border border-gray-700'
+                    ? 'bg-neon-blue/20 text-white border border-neon-blue/30'
+                    : 'bg-gray-800/90 text-gray-200 border border-gray-700'
                     }`}
                 >
                   {/* Bot Icon for model messages */}
@@ -234,8 +242,8 @@ const AIChatBot: React.FC = () => {
                 type="button"
                 onClick={toggleListening}
                 className={`w-10 flex items-center justify-center rounded border transition-all ${isListening
-                    ? 'bg-red-500/20 border-red-500 text-red-500 animate-pulse'
-                    : 'bg-black/50 border-gray-600 text-neon-blue hover:border-neon-blue'
+                  ? 'bg-red-500/20 border-red-500 text-red-500 animate-pulse'
+                  : 'bg-black/50 border-gray-600 text-neon-blue hover:border-neon-blue'
                   }`}
               >
                 <i className={`fa-solid ${isListening ? 'fa-microphone-lines' : 'fa-microphone'}`}></i>
